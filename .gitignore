@@ -1,0 +1,20 @@
+# Node modules (both frontend and backend)
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build files (frontend)
+build/
+dist/
+
+# Dependency directories
+jspm_packages/
+
+# dotenv environment variables
+.env
+.env.local
