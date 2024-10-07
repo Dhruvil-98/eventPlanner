@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './login.css'; // Importing the external CSS
+import { useNavigate } from 'react-router-dom'; 
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -10,6 +11,8 @@ const Login = () => {
     // const { email, password } = formData;
     //const { email, password } = formData;
     const { email, password } = formData;
+    const navigate = useNavigate();  // Create a navigation hook
+
 
     const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -17,7 +20,12 @@ const Login = () => {
         e.preventDefault();
         try {
             const res = await axios.post('http://localhost:9000/api/v1/user/login', formData); // Replace with your backend URL
-            alert(res.data.msg); // You might want to redirect user to a dashboard upon success
+            // alert(res.data.msg); // You might want to redirect user to a dashboard upon success
+            // Redirect to the homepage after login
+            if (res.status === 201) { // Assuming 201 is the status code for successful registration
+                alert(res.data.msg);
+                navigate('/home'); // Navigate to the login page on success
+            }
         } catch (err) {
             alert('Error during login');
         }
@@ -46,7 +54,7 @@ const Login = () => {
                     required 
                 />
                 <button type="submit" className="submit-btn">Login</button>
-                <p className="signup-text">Don't have an account? <a href="#">Sign Up</a></p>
+                <p className="signup-text">Don't have an account? <a href="/Register">Sign Up</a></p>
             </form>
         </div>
     );
