@@ -10,6 +10,7 @@ const Register = () => {
 
     const { name, email, password, phone, address } = formData;
 
+    
     const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
@@ -43,5 +44,6 @@ const Register = () => {
         </div>
     );
 };
+
 
 export default Register;
